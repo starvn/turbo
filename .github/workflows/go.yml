@@ -23,9 +23,8 @@ jobs:
 
     - name: Test
       run: go test -race -coverprofile=coverage.out -covermode=atomic ./...
-    
-    - name: Integration Test
-      run: go test -tags integration ./test
       
     - name: Upload coverage to Codecov
       run: bash <(curl -s https://codecov.io/bash)
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
