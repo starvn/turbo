@@ -23,7 +23,7 @@ import (
 )
 
 func TestNewParser_ok(t *testing.T) {
-	configPath := "D:\\Sources\\other/ok.json"
+	configPath := "/tmp/ok.json"
 	configContent := []byte(`{
     "version": 2,
     "name": "My lovely gateway",
@@ -152,49 +152,49 @@ func TestNewParser_errorMessages(t *testing.T) {
 	}{
 		{
 			name:    "case0",
-			path:    "D:\\Sources\\other/ok.json",
+			path:    "/tmp/ok.json",
 			content: []byte(`{`),
-			expErr:  "'D:\\Sources\\other/ok.json': unexpected end of JSON input, offset: 1, row: 0, col: 1",
+			expErr:  "'/tmp/ok.json': unexpected end of JSON input, offset: 1, row: 0, col: 1",
 		},
 		{
 			name:    "case1",
-			path:    "D:\\Sources\\other/ok.json",
+			path:    "/tmp/ok.json",
 			content: []byte(`>`),
-			expErr:  "'D:\\Sources\\other/ok.json': invalid character '>' looking for beginning of value, offset: 1, row: 0, col: 1",
+			expErr:  "'/tmp/ok.json': invalid character '>' looking for beginning of value, offset: 1, row: 0, col: 1",
 		},
 		{
 			name:    "case2",
-			path:    "D:\\Sources\\other/ok.json",
+			path:    "/tmp/ok.json",
 			content: []byte(`"`),
-			expErr:  "'D:\\Sources\\other/ok.json': unexpected end of JSON input, offset: 1, row: 0, col: 1",
+			expErr:  "'/tmp/ok.json': unexpected end of JSON input, offset: 1, row: 0, col: 1",
 		},
 		{
 			name:    "case3",
-			path:    "D:\\Sources\\other/ok.json",
+			path:    "/tmp/ok.json",
 			content: []byte(``),
-			expErr:  "'D:\\Sources\\other/ok.json': unexpected end of JSON input, offset: 0, row: 0, col: 0",
+			expErr:  "'/tmp/ok.json': unexpected end of JSON input, offset: 0, row: 0, col: 0",
 		},
 		{
 			name:    "case4",
-			path:    "D:\\Sources\\other/ok.json",
+			path:    "/tmp/ok.json",
 			content: []byte(`[{}]`),
-			expErr:  "'D:\\Sources\\other/ok.json': json: cannot unmarshal array into Go value of type config.parseableServiceConfig, offset: 1, row: 0, col: 1",
+			expErr:  "'/tmp/ok.json': json: cannot unmarshal array into Go value of type config.parseableServiceConfig, offset: 1, row: 0, col: 1",
 		},
 		{
 			name:    "case5",
-			path:    "D:\\Sources\\other/ok.json",
+			path:    "/tmp/ok.json",
 			content: []byte(`42`),
-			expErr:  "'D:\\Sources\\other/ok.json': json: cannot unmarshal number into Go value of type config.parseableServiceConfig, offset: 2, row: 0, col: 2",
+			expErr:  "'/tmp/ok.json': json: cannot unmarshal number into Go value of type config.parseableServiceConfig, offset: 2, row: 0, col: 2",
 		},
 		{
 			name:    "case6",
-			path:    "D:\\Sources\\other/ok.json",
+			path:    "/tmp/ok.json",
 			content: []byte("\r\n42"),
-			expErr:  "'D:\\Sources\\other/ok.json': json: cannot unmarshal number into Go value of type config.parseableServiceConfig, offset: 4, row: 1, col: 2",
+			expErr:  "'/tmp/ok.json': json: cannot unmarshal number into Go value of type config.parseableServiceConfig, offset: 4, row: 1, col: 2",
 		},
 		{
 			name: "case7",
-			path: "D:\\Sources\\other/ok.json",
+			path: "/tmp/ok.json",
 			content: []byte(`{
 	"version": 2,
 	"name": "My lovely gateway",
@@ -203,7 +203,7 @@ func TestNewParser_errorMessages(t *testing.T) {
 	"timeout": "3s",
 	"endpoints": []
 }`),
-			expErr: "'D:\\Sources\\other/ok.json': invalid character '\"' after object key:value pair, offset: 83, row: 5, col: 2",
+			expErr: "'/tmp/ok.json': invalid character '\"' after object key:value pair, offset: 83, row: 5, col: 2",
 		},
 	} {
 		t.Run(configContent.name, func(t *testing.T) {
@@ -252,13 +252,13 @@ func TestNewParser_unknownFile(t *testing.T) {
 }
 
 func TestNewParser_readingError(t *testing.T) {
-	wrongConfigPath := "D:\\Sources\\other/reading.json"
+	wrongConfigPath := "/tmp/reading.json"
 	wrongConfigContent := []byte("{hello\ngo\n")
 	if err := ioutil.WriteFile(wrongConfigPath, wrongConfigContent, 0644); err != nil {
 		t.FailNow()
 	}
 
-	expected := "'D:\\Sources\\other/reading.json': invalid character 'h' looking for beginning of object key string, offset: 2, row: 0, col: 2"
+	expected := "'/tmp/reading.json': invalid character 'h' looking for beginning of object key string, offset: 2, row: 0, col: 2"
 	_, err := NewParser().Parse(wrongConfigPath)
 	if err == nil || err.Error() != expected {
 		t.Error("Error expected. Got", err)
@@ -269,14 +269,14 @@ func TestNewParser_readingError(t *testing.T) {
 }
 
 func TestNewParser_initError(t *testing.T) {
-	wrongConfigPath := "D:\\Sources\\other/unmarshall.json"
+	wrongConfigPath := "/tmp/unmarshall.json"
 	wrongConfigContent := []byte("{\"a\":42}")
 	if err := ioutil.WriteFile(wrongConfigPath, wrongConfigContent, 0644); err != nil {
 		t.FailNow()
 	}
 
 	_, err := NewParser().Parse(wrongConfigPath)
-	if err == nil || err.Error() != "'D:\\Sources\\other/unmarshall.json': unsupported version: 0 (want: 2)" {
+	if err == nil || err.Error() != "'/tmp/unmarshall.json': unsupported version: 0 (want: 1)" {
 		t.Error("Error expected. Got", err)
 	}
 	if err = os.Remove(wrongConfigPath); err != nil {
