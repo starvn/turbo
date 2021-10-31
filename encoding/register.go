@@ -17,8 +17,8 @@
 package encoding
 
 import (
+	"github.com/starvn/turbo/register"
 	"io"
-	"turbo/register"
 )
 
 func GetRegister() *DecoderRegister {
