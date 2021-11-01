@@ -55,7 +55,7 @@ type ServiceConfig struct {
 	WriteTimeout              time.Duration     `mapstructure:"write_timeout"`
 	IdleTimeout               time.Duration     `mapstructure:"idle_timeout"`
 	ReadHeaderTimeout         time.Duration     `mapstructure:"read_header_timeout"`
-	DisableKeepAlive          bool              `mapstructure:"disable_keep_alive"`
+	DisableKeepAlives         bool              `mapstructure:"disable_keep_alives"`
 	DisableCompression        bool              `mapstructure:"disable_compression"`
 	MaxIdleConnections        int               `mapstructure:"max_idle_connections"`
 	MaxIdleConnectionsPerHost int               `mapstructure:"max_idle_connections_per_host"`

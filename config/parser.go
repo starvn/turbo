@@ -146,7 +146,7 @@ type parseableServiceConfig struct {
 	WriteTimeout              string                     `json:"write_timeout"`
 	IdleTimeout               string                     `json:"idle_timeout"`
 	ReadHeaderTimeout         string                     `json:"read_header_timeout"`
-	DisableKeepAlive          bool                       `json:"disable_keep_alives"`
+	DisableKeepAlives         bool                       `json:"disable_keep_alives"`
 	DisableCompression        bool                       `json:"disable_compression"`
 	MaxIdleConnections        int                        `json:"max_idle_connections"`
 	MaxIdleConnectionsPerHost int                        `json:"max_idle_connections_per_host"`
@@ -175,7 +175,7 @@ func (p *parseableServiceConfig) normalize() ServiceConfig {
 		WriteTimeout:              parseDuration(p.WriteTimeout),
 		IdleTimeout:               parseDuration(p.IdleTimeout),
 		ReadHeaderTimeout:         parseDuration(p.ReadHeaderTimeout),
-		DisableKeepAlive:          p.DisableKeepAlive,
+		DisableKeepAlives:         p.DisableKeepAlives,
 		DisableCompression:        p.DisableCompression,
 		MaxIdleConnections:        p.MaxIdleConnections,
 		MaxIdleConnectionsPerHost: p.MaxIdleConnectionsPerHost,
