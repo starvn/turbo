@@ -54,7 +54,7 @@ func TestNewParser_ok(t *testing.T) {
             ]
         },
         {
-            "endpoint": "/supu",
+            "endpoint": "/sonic",
             "method": "GET",
             "concurrent_calls": 3,
             "backend": [
@@ -62,7 +62,7 @@ func TestNewParser_ok(t *testing.T) {
                     "host": [
                         "http://127.0.0.1:8080"
                     ],
-                    "url_pattern": "/__debug/supu"
+                    "url_pattern": "/__debug/sonic"
                 }
             ]
         },

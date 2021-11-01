@@ -272,7 +272,7 @@ type parseableBackend struct {
 	IsCollection             bool              `json:"is_collection"`
 	Target                   string            `json:"target"`
 	ExtraConfig              *ExtraConfig      `json:"extra_config,omitempty"`
-	SD                       string            `json:"sd"`
+	SD                       string            `json:"discovery"`
 }
 
 func (p *parseableBackend) normalize() *Backend {
