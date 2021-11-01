@@ -1,3 +1,6 @@
+//go:build integration || !race
+// +build integration !race
+
 /*
  * Copyright (c) 2021 Huy Duc Dao
  *
