@@ -20,8 +20,8 @@ import (
 	"bytes"
 	"context"
 	"github.com/starvn/turbo/config"
+	"github.com/starvn/turbo/discovery"
 	"github.com/starvn/turbo/log"
-	"github.com/starvn/turbo/sd"
 	"net/url"
 	"strings"
 	"testing"
@@ -51,7 +51,7 @@ func TestDefaultFactoryWithSubscriber(t *testing.T) {
 		return
 	}
 
-	factory := DefaultFactoryWithSubscriber(logger, sd.FixedSubscriberFactory)
+	factory := DefaultFactoryWithSubscriber(logger, discovery.FixedSubscriberFactory)
 
 	if _, err := factory.New(&config.EndpointConfig{}); err != ErrNoBackends {
 		t.Errorf("Expecting ErrNoBackends. Got: %v\n", err)

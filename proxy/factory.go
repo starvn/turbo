@@ -18,8 +18,8 @@ package proxy
 
 import (
 	"github.com/starvn/turbo/config"
+	"github.com/starvn/turbo/discovery"
 	"github.com/starvn/turbo/log"
-	"github.com/starvn/turbo/sd"
 )
 
 type Factory interface {
@@ -34,22 +34,22 @@ func DefaultFactory(logger log.Logger) Factory {
 	return NewDefaultFactory(httpProxy, logger)
 }
 
-func DefaultFactoryWithSubscriber(logger log.Logger, sF sd.SubscriberFactory) Factory {
+func DefaultFactoryWithSubscriber(logger log.Logger, sF discovery.SubscriberFactory) Factory {
 	return NewDefaultFactoryWithSubscriber(httpProxy, logger, sF)
 }
 
 func NewDefaultFactory(backendFactory BackendFactory, logger log.Logger) Factory {
-	return NewDefaultFactoryWithSubscriber(backendFactory, logger, sd.GetSubscriber)
+	return NewDefaultFactoryWithSubscriber(backendFactory, logger, discovery.GetSubscriber)
 }
 
-func NewDefaultFactoryWithSubscriber(backendFactory BackendFactory, logger log.Logger, sF sd.SubscriberFactory) Factory {
+func NewDefaultFactoryWithSubscriber(backendFactory BackendFactory, logger log.Logger, sF discovery.SubscriberFactory) Factory {
 	return defaultFactory{backendFactory, logger, sF}
 }
 
 type defaultFactory struct {
 	backendFactory    BackendFactory
 	logger            log.Logger
-	subscriberFactory sd.SubscriberFactory
+	subscriberFactory discovery.SubscriberFactory
 }
 
 func (pf defaultFactory) New(cfg *config.EndpointConfig) (p Proxy, err error) {
