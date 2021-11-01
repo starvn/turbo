@@ -97,7 +97,7 @@ type Backend struct {
 	Encoding                 string            `mapstructure:"encoding"`
 	IsCollection             bool              `mapstructure:"is_collection"`
 	Target                   string            `mapstructure:"target"`
-	SD                       string            `mapstructure:"sd"`
+	SD                       string            `mapstructure:"discovery"`
 	URLKeys                  []string
 	ConcurrentCalls          int
 	Timeout                  time.Duration
