@@ -18,11 +18,11 @@ package encoding
 
 import (
 	"errors"
+	"github.com/starvn/turbo/register"
 	"io"
 	"io/ioutil"
 	"strings"
 	"testing"
-	"turbo/register"
 )
 
 func TestNoOpDecoder(t *testing.T) {

@@ -1,12 +1,12 @@
 # Contributing
 
-Thank you for your interest in contributing to Lura, there are several ways you can contribute and make this project
+Thank you for your interest in contributing to Turbo, there are several ways you can contribute and make this project
 more awesome, please see below:
 
 ## Reporting an Issue
 
 If you believe you have found an issue with the code please do not hesitate to file an issue
-in [Github](https://github.com/luraproject/lura/issues). When filing the issue please describe the problem with the
+in [Github](https://github.com/starvn/turbo/issues). When filing the issue please describe the problem with the
 maximum level of detail and the steps to reproduce the problem, including information about your environment.
 
 You can also open an issue requesting for help or doing a question and it's also a good way of contributing since other
