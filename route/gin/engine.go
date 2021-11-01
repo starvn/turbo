@@ -25,7 +25,7 @@ import (
 	"net/textproto"
 )
 
-const Namespace = "github_com/starvn/turbo/route/gin"
+const Namespace = "github.com/starvn/turbo/route/gin"
 
 func NewEngine(cfg config.ServiceConfig, logger log.Logger, w io.Writer) *gin.Engine {
 	gin.SetMode(gin.ReleaseMode)

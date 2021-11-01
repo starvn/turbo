@@ -25,7 +25,7 @@ import (
 	"net/http"
 )
 
-const Namespace = "github.com/starvn/turbo/transport/http"
+const Namespace = "github.com/starvn/turbo/transport/http/client"
 
 var ErrInvalidStatusCode = errors.New("Invalid status code")
 
