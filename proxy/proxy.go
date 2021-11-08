@@ -24,7 +24,7 @@ import (
 	"io"
 )
 
-const Namespace = "turbo/proxy"
+const Namespace = "github.com/starvn/turbo/proxy"
 
 type Metadata struct {
 	Headers    map[string][]string
